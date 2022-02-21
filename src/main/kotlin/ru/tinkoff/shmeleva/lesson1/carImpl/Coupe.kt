@@ -1,15 +1,16 @@
-package main.kotlin.ru.tinkoff.Shmeleva.Lesson1
+package main.kotlin.ru.tinkoff.shmeleva.lesson1.carImpl
+
+import main.kotlin.ru.tinkoff.shmeleva.lesson1.car.Car
 
 class Coupe(override val brand: String, override val speed: String, override val price: Int, var gasUpSound: String = "Wrom wrom") : Car {
 
     private var petrol: Int = 90
 
-    fun gasUp() = println("$gasUpSound")
+    fun printGasUpSound():String = "$gasUpSound"
 
-    override fun maxSpeedInfo() {
+    override fun printMaxSpeedInfo():String {
         var petrolInfo = if (petrol == 0) "But we need petrol" else "It's too fast for Russian roads!"
-        println("Wow, $brand maximum speed is $speed kph! $petrolInfo")
-
+        return "Wow, $brand maximum speed is $speed kph! $petrolInfo"
     }
 
     override fun fillUp() {
@@ -24,8 +25,8 @@ class Coupe(override val brand: String, override val speed: String, override val
         }
     }
 
-    override fun petrolInfo() = "$petrol".petrolReserve()
+    override fun printPetrolInfo():String = "Coupe petrol reserve: $brand has $petrol liters"
 
-    override fun priceToString() = println("$brand price: $price")
+    override fun priceToString():String = "$brand price: $price$"
 
 }

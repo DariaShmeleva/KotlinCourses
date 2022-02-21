@@ -1,12 +1,12 @@
-package main.kotlin.ru.tinkoff.Shmeleva.Lesson1
+package main.kotlin.ru.tinkoff.shmeleva.lesson1.carImpl
+
+import main.kotlin.ru.tinkoff.shmeleva.lesson1.car.Car
 
 class Jeep(override val brand: String, override val speed: String, override val price: Int, val offRoad: String) : Car {
 
     private var petrol: Int = 110
 
-    fun goToOffRoad() {
-        println("$brand go to $offRoad.")
-    }
+    fun printWhereToGoOffRoad():String = "$brand go to $offRoad."
 
     override fun fillUp() {
         petrol += 10;
@@ -24,8 +24,8 @@ class Jeep(override val brand: String, override val speed: String, override val 
         }
     }
 
-    override fun petrolInfo() = "$petrol".petrolReserve()
+    override fun printPetrolInfo():String = "Jeep petrol reserve: $brand has $petrol liters"
 
-    override fun priceToString() = println("$brand price: $price")
+    override fun priceToString():String = "$brand price: $price$"
 
 }

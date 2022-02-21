@@ -1,6 +1,4 @@
-package main.kotlin.ru.tinkoff.shmeleva.lesson1.carImpl
-
-import main.kotlin.ru.tinkoff.shmeleva.lesson1.car.Car
+package main.kotlin.ru.tinkoff.shmeleva.lesson1.car
 
 class Coupe(override val brand: String, override val speed: String, override val price: Int, var gasUpSound: String = "Wrom wrom") : Car {
 

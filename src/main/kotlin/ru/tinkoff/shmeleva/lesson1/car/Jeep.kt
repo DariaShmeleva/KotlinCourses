@@ -1,6 +1,4 @@
-package main.kotlin.ru.tinkoff.shmeleva.lesson1.carImpl
-
-import main.kotlin.ru.tinkoff.shmeleva.lesson1.car.Car
+package main.kotlin.ru.tinkoff.shmeleva.lesson1.car
 
 class Jeep(override val brand: String, override val speed: String, override val price: Int, val offRoad: String) : Car {
 

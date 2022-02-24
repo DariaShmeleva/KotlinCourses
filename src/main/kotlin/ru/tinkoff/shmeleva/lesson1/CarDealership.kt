@@ -1,7 +1,7 @@
-package main.kotlin.ru.tinkoff.shmeleva.lesson1
+package ru.tinkoff.shmeleva.lesson1
 
-import main.kotlin.ru.tinkoff.shmeleva.lesson1.car.Coupe
-import main.kotlin.ru.tinkoff.shmeleva.lesson1.car.Jeep
+import ru.tinkoff.shmeleva.lesson1.car.Coupe
+import ru.tinkoff.shmeleva.lesson1.car.Jeep
 
 class CarDealership {
     constructor(jeep: Jeep){

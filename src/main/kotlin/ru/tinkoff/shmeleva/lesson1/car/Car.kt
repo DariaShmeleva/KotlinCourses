@@ -1,4 +1,4 @@
-package main.kotlin.ru.tinkoff.shmeleva.lesson1.car
+package ru.tinkoff.shmeleva.lesson1.car
 
 interface Car {
 

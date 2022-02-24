@@ -1,7 +1,7 @@
-package main.kotlin.ru.tinkoff.shmeleva.lesson1
+package ru.tinkoff.shmeleva.lesson1
 
-import main.kotlin.ru.tinkoff.shmeleva.lesson1.car.Coupe
-import main.kotlin.ru.tinkoff.shmeleva.lesson1.car.Jeep
+import ru.tinkoff.shmeleva.lesson1.car.Coupe
+import ru.tinkoff.shmeleva.lesson1.car.Jeep
 
 fun main() {
     val jeep = Jeep("Toyota", "210", 2000, "forest")
@@ -17,6 +17,6 @@ fun main() {
     println(coupe.printPetrolInfo())
     println(coupe.printGasUpSound())
 
-    val carDealership1 = CarDealership(jeep)
-    val carDealership2 = CarDealership(coupe)
+    CarDealership(jeep)
+    CarDealership(coupe)
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.tinkoff.shmeleva.car.JeepTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-03-10T18:41:50" hostname="DESKTOP-J8GA979" time="0.076">
+  <properties/>
+  <testcase name="when car fills up for exact quantity petrol increases exact quantity()" classname="ru.tinkoff.shmeleva.car.JeepTest" time="0.057"/>
+  <testcase name="when car drives petrol decreases 10()" classname="ru.tinkoff.shmeleva.car.JeepTest" time="0.001"/>
+  <testcase name="when car fills up petrol increases 10()" classname="ru.tinkoff.shmeleva.car.JeepTest" time="0.014"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

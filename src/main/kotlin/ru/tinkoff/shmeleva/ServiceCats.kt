@@ -22,7 +22,10 @@ class ServiceCats {
 
 
     //Метод, группирующий элементы списка по типу кузова или по какому-либо заранее выбранному полю
-    fun catsGroupBy(cats: Collection<Cat>) = cats.groupBy { it.furType }
+    fun catsGroupBy(cats: Collection<Cat>) =
+        cats.asSequence()
+            .groupBy { it.furType }
+            .toMap()
 
 
     //Метод, возвращающий первые 3 элемента из списка соответствующих переданному условию

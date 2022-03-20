@@ -2,7 +2,6 @@ package ru.tinkoff.shmeleva
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import ru.tinkoff.shmeleva.Transliteration.cyr2lat
 
 internal class ServiceCatsTest {
     val serviseCats = ServiceCats()
@@ -32,16 +31,16 @@ internal class ServiceCatsTest {
     fun groupByFurType() {
         val expected = mapOf(
             FurType.Shorthair to listOf(
-            Cat("Пушок", "абиссинская", FurType.Shorthair, 23000, 2),
-            Cat("Коготок", "бенгал", FurType.Shorthair, 27000, 2)
+                Cat("Пушок", "абиссинская", FurType.Shorthair, 23000, 2),
+                Cat("Коготок", "бенгал", FurType.Shorthair, 27000, 2)
             ),
             FurType.Longhair to listOf(
                 Cat("Муся", "британская", FurType.Longhair, 37000, 3),
                 Cat("Пуся", "манчкин", FurType.Longhair, 25000, 6)
             ),
             FurType.NoHair to listOf(
-            Cat("Грогу", "сфинкс", FurType.NoHair, 30000, 4)
-        )
+                Cat("Грогу", "сфинкс", FurType.NoHair, 30000, 4)
+            )
         )
 
         val actual = serviseCats.catsGroupBy(cats)

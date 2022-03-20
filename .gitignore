@@ -7,3 +7,6 @@
 /.idea/
 /build/
 /.gradle/
+*.log
+*.lock
+*.bin

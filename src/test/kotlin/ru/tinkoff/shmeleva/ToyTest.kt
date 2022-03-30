@@ -38,11 +38,13 @@ class MockMvcApplicationTests {
     @Test
     fun toyAddedToList() {
         every { toyClient.enrichToyInfo(any()) } returns responseToy
-       every { toyRepository.addToy(any()) } returns Unit
+        every { toyRepository.addToy(any()) } returns Unit
 
-            mockMvc.perform(post("/toys/add")
-            .content(objectMapper.writeValueAsString(requestToy))
-            .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(
+            post("/toys/add")
+                .content(objectMapper.writeValueAsString(requestToy))
+                .contentType(MediaType.APPLICATION_JSON)
+        )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.name").value("Барби"))
             .andExpect(jsonPath("$.type").value("Кукла"))
@@ -73,8 +75,10 @@ class MockMvcApplicationTests {
     fun listOfLowerPriceToys() {
         every { toyRepository.getAllLowerPrice(any()) } returns list
 
-        mockMvc.perform(get("/toys/getAllLowerPrice")
-            .param("price", "1900"))
+        mockMvc.perform(
+            get("/toys/getAllLowerPrice")
+                .param("price", "1900")
+        )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$[0].name").value("Молния"))
             .andExpect(jsonPath("$[0].type").value("Машинка"))
@@ -88,8 +92,10 @@ class MockMvcApplicationTests {
     fun errorMessageWhenGetAllLowerPriceFails() {
         every { toyRepository.getAllLowerPrice(any()) } throws illegalStateException
 
-        mockMvc.perform(get("/toys/getAllLowerPrice")
-            .param("price", "2000"))
+        mockMvc.perform(
+            get("/toys/getAllLowerPrice")
+                .param("price", "2000")
+        )
             .andExpect(status().is5xxServerError)
             .andExpect(content().string(containsString("Игрушки дешевле отсутствуют")))
     }

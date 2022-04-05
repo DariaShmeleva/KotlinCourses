@@ -1,22 +1,16 @@
 package ru.tinkoff.shmeleva.toyStore
 
 import org.springframework.stereotype.Service
+import ru.tinkoff.shmeleva.db.ToyRepository
 
 @Service
-class ToyService(
-    private val toyClient: ToyClient,
-    private val toyRepository: ToyRepository
+class ToyService( private val toyRepository: ToyRepository
 ) {
 
-    fun addToy(requestToy: RequestToy): ResponseToy {
-        val responseToy = toyClient.enrichToyInfo(requestToy)
-        toyRepository.addToy(responseToy)
-        return responseToy
+    fun addToy(requestToy: RequestToy) {
+        toyRepository.addToy(RequestToy(requestToy.toyname, requestToy.toytype, requestToy.price))
     }
 
-    fun getToy(id: Long) =
-        toyRepository.getToy(id)
+    fun getToys() = toyRepository.getToys()
 
-    fun getAllLowerPrice(price: Int) =
-        toyRepository.getAllLowerPrice(price)
 }

@@ -1,6 +1,7 @@
 package ru.tinkoff.shmeleva.toyStore
 
 data class RequestToy(
-    val name: String,
+    val toyname: String,
+    val toytype: String,
     val price: Int
 )

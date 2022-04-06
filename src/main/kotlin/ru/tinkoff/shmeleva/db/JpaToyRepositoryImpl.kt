@@ -2,18 +2,19 @@ package ru.tinkoff.shmeleva.db
 
 import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
-import ru.tinkoff.shmeleva.toyStore.RequestToy
-import java.util.*
 
 @Primary
 @Service
-class JpaToyRepositoryImpl(private val repository: JpaToyRepo): ToyRepository {
-    override fun addToy(requestToy: RequestToy) {
-        repository.save(Toy(Random(100).nextInt(), requestToy.toyname, requestToy.toytype, requestToy.price))
+class JpaToyRepositoryImpl(private val repository: JpaToyRepo) : ToyRepository {
+    override fun addToy(toy: ToyDB) {
+        repository.save(toy)
     }
 
-    override fun getToys() = repository.findAll()
+    override fun getToys(): List<ToyDB> {
+        return repository.findAll()
+    }
 
-
-
+    override fun getToy(id: Int): ToyDB {
+        return repository.findById(id).get()
+    }
 }

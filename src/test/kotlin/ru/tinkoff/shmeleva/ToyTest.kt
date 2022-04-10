@@ -9,16 +9,15 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import ru.tinkoff.shmeleva.toyStore.ToyClient
-import ru.tinkoff.shmeleva.toyStore.ToyRepository
+import ru.tinkoff.shmeleva.client.ToyClient
+import ru.tinkoff.shmeleva.repository.ToyRepository
 import org.hamcrest.CoreMatchers.containsString
-import org.springframework.boot.context.properties.bind.Bindable.listOf
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
-import ru.tinkoff.shmeleva.toyStore.RequestToy
-import ru.tinkoff.shmeleva.toyStore.ResponseToy
+import ru.tinkoff.shmeleva.model.ToyRequest
+import ru.tinkoff.shmeleva.model.ToyResponse
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -37,12 +36,12 @@ class MockMvcApplicationTests {
 
     @Test
     fun toyAddedToList() {
-        every { toyClient.enrichToyInfo(any()) } returns responseToy
+        every { toyClient.enrichToyInfo(any()) } returns toyResponse
         every { toyRepository.addToy(any()) } returns Unit
 
         mockMvc.perform(
             post("/toys/add")
-                .content(objectMapper.writeValueAsString(requestToy))
+                .content(objectMapper.writeValueAsString(toyRequest))
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk)
@@ -53,7 +52,7 @@ class MockMvcApplicationTests {
 
     @Test
     fun getToySuccessfully() {
-        every { toyRepository.getToy(any()) } returns responseToy
+        every { toyRepository.getToy(any()) } returns toyResponse
 
         mockMvc.perform(get("/toys/get/0"))
             .andExpect(status().isOk)
@@ -100,15 +99,21 @@ class MockMvcApplicationTests {
             .andExpect(content().string(containsString("Игрушки дешевле отсутствуют")))
     }
 
+    @Test
+    fun errorMyExeption() {
+
+        every { toyRepository.addToy(any()) } returns Unit
+    }
+
     companion object {
-        private val requestToy = RequestToy("Барби", 2000)
-        private val responseToy = ResponseToy("Барби", "Кукла", 2000)
+        private val toyRequest = ToyRequest("Барби", 2000)
+        private val toyResponse = ToyResponse("Барби", "Кукла", 2000)
         private val illegalArgumentException = IllegalArgumentException("Отсутствует игрушка с таким штрихкодом")
         private val list = listOf(
-            ResponseToy("Молния", "Машинка", 1500),
-            ResponseToy("Мишка", "Плюшевая", 1800),
-            ResponseToy("Барби", "Кукла", 2000),
-            ResponseToy("Кораблик", "Радиоуправляемая", 3500)
+            ToyResponse("Молния", "Машинка", 1500),
+            ToyResponse("Мишка", "Плюшевая", 1800),
+            ToyResponse("Барби", "Кукла", 2000),
+            ToyResponse("Кораблик", "Радиоуправляемая", 3500)
         )
         private val illegalStateException = IllegalStateException("Игрушки дешевле отсутствуют")
     }

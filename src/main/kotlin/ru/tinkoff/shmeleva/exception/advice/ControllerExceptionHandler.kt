@@ -1,4 +1,4 @@
-package ru.tinkoff.shmeleva.configuration
+package ru.tinkoff.shmeleva.exception.advice
 
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -24,5 +24,4 @@ class ControllerExceptionHandler {
         log.error(e.message, e)
         return e.message
     }
-
 }

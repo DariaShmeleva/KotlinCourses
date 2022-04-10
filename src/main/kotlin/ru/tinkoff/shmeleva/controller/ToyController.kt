@@ -1,20 +1,20 @@
-package ru.tinkoff.shmeleva.configuration
+package ru.tinkoff.shmeleva.controller
 
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RestController
-import ru.tinkoff.shmeleva.toyStore.RequestToy
-import ru.tinkoff.shmeleva.toyStore.ToyService
+import ru.tinkoff.shmeleva.model.ToyRequest
+import ru.tinkoff.shmeleva.service.ToyService
 
 @RestController
 @RequestMapping("/toys")
-class RestController(
+class ToyController(
     private val toyService: ToyService
 ) {
 
     @PostMapping("/add")
     fun addToy(
-        @RequestBody requestToy: RequestToy
-    ) = toyService.addToy(requestToy)
+        @RequestBody toyRequest: ToyRequest
+    ) = toyService.addToy(toyRequest)
 
     @GetMapping("/get/{id}")
     fun getToy(

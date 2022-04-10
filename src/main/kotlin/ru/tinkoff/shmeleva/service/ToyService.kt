@@ -1,6 +1,10 @@
-package ru.tinkoff.shmeleva.toyStore
+package ru.tinkoff.shmeleva.service
 
 import org.springframework.stereotype.Service
+import ru.tinkoff.shmeleva.model.ToyRequest
+import ru.tinkoff.shmeleva.model.ToyResponse
+import ru.tinkoff.shmeleva.client.ToyClient
+import ru.tinkoff.shmeleva.repository.ToyRepository
 
 @Service
 class ToyService(
@@ -8,8 +12,8 @@ class ToyService(
     private val toyRepository: ToyRepository
 ) {
 
-    fun addToy(requestToy: RequestToy): ResponseToy {
-        val responseToy = toyClient.enrichToyInfo(requestToy)
+    fun addToy(toyRequest: ToyRequest): ToyResponse {
+        val responseToy = toyClient.enrichToyInfo(toyRequest)
         toyRepository.addToy(responseToy)
         return responseToy
     }

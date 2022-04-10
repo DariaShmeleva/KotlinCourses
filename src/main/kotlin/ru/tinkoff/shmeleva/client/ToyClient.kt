@@ -1,8 +1,10 @@
-package ru.tinkoff.shmeleva.toyStore
+package ru.tinkoff.shmeleva.client
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
+import ru.tinkoff.shmeleva.model.ToyRequest
+import ru.tinkoff.shmeleva.model.ToyResponse
 
 @Service
 class ToyClient(
@@ -11,7 +13,7 @@ class ToyClient(
     @Value("\${toy.address}")
     private lateinit var toyAddress: String
 
-    fun enrichToyInfo(requestToy: RequestToy) =
-        restTemplate.postForEntity(toyAddress, requestToy, ResponseToy::class.java).body
+    fun enrichToyInfo(toyRequest: ToyRequest) =
+        restTemplate.postForEntity(toyAddress, toyRequest, ToyResponse::class.java).body
             ?: throw IllegalStateException("Не удалось обогатить данные")
 }

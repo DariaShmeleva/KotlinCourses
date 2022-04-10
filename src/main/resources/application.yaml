@@ -1,7 +1,7 @@
 spring:
 application.name: TinkoffL1
 profiles.active: dev
-server.port: 9000
+server.port: 8080
 
 
-toy.address: http://localhost:9001
+toy.address: http://localhost:8080

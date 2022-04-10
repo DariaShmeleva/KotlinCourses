@@ -1,9 +1,9 @@
-package ru.tinkoff.shmeleva.configuration
+package ru.tinkoff.shmeleva.controller
 
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RestController
-import ru.tinkoff.shmeleva.toyStore.Toy
-import ru.tinkoff.shmeleva.toyStore.ToyService
+import ru.tinkoff.shmeleva.model.Toy
+import ru.tinkoff.shmeleva.service.ToyService
 
 @RestController
 @RequestMapping("/toys")

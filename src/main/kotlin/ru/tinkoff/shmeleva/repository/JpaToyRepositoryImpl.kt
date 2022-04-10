@@ -1,7 +1,8 @@
-package ru.tinkoff.shmeleva.db
+package ru.tinkoff.shmeleva.repository
 
 import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
+import ru.tinkoff.shmeleva.db.ToyDB
 
 @Primary
 @Service

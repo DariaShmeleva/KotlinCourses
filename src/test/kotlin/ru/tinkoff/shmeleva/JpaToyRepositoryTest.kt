@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.annotation.DirtiesContext
-import ru.tinkoff.shmeleva.db.JpaToyRepo
+import ru.tinkoff.shmeleva.repository.JpaToyRepo
 import ru.tinkoff.shmeleva.db.ToyDB
 
 @DataJpaTest

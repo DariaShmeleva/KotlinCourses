@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class Application
+class TinkoffL1
 
 fun main() {
-    runApplication<Application>()
+    runApplication<TinkoffL1>()
 }

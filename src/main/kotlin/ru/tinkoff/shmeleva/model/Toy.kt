@@ -1,4 +1,4 @@
-package ru.tinkoff.shmeleva.toyStore
+package ru.tinkoff.shmeleva.model
 
 data class Toy(
     val toyname: String,

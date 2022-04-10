@@ -10,7 +10,7 @@ import ru.tinkoff.shmeleva.db.ToyDB
 class JdbcToyRepositoryImpl(private val jdbcTemplate: JdbcTemplate) : ToyRepository {
     override fun addToy(toy: ToyDB) {
         val statementCreator = PreparedStatementCreator { con ->
-            val ps = con.prepareStatement("INSERT INTO toys (toyname, toytype, price) VALUES (?, ?, ?)")
+            val ps = con.prepareStatement(ADD_TOY)
             ps.setString(1, toy.toyname)
             ps.setString(2, toy.toytype)
             ps.setInt(3, toy.price)
@@ -20,7 +20,7 @@ class JdbcToyRepositoryImpl(private val jdbcTemplate: JdbcTemplate) : ToyReposit
     }
 
     override fun getToys(): List<ToyDB> {
-        return jdbcTemplate.query("select * from toys") { rs, _ ->
+        return jdbcTemplate.query(GET_ALL_TOYS) { rs, _ ->
             ToyDB(
                 rs.getInt("toy_id"),
                 rs.getString("toyname"),
@@ -32,7 +32,7 @@ class JdbcToyRepositoryImpl(private val jdbcTemplate: JdbcTemplate) : ToyReposit
 
     override fun getToy(id: Int): ToyDB {
         val statementCreator = PreparedStatementCreator { con ->
-            val ps = con.prepareStatement("SELECT * FROM toys WHERE toy_id=?")
+            val ps = con.prepareStatement(GET_TOY)
             ps.setInt(1, id)
             ps
         }
@@ -44,6 +44,13 @@ class JdbcToyRepositoryImpl(private val jdbcTemplate: JdbcTemplate) : ToyReposit
                     rs.getString("toytype"),
                     rs.getInt("price")
                 )
-            }[0]
+            }.first()
+    }
+    companion object {
+        private const val ADD_TOY = "INSERT INTO toys (toyname, toytype, price) VALUES (?, ?, ?)"
+
+        private const val GET_ALL_TOYS = "select * from toys"
+
+        private const val GET_TOY = "SELECT * FROM toys WHERE toy_id=?"
     }
 }

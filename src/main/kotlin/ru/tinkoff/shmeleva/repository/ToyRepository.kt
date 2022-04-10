@@ -1,6 +1,7 @@
 package ru.tinkoff.shmeleva.repository
 
 import org.springframework.stereotype.Repository
+import ru.tinkoff.shmeleva.exception.advice.MyToyException
 import ru.tinkoff.shmeleva.model.ToyResponse
 
 @Repository
@@ -18,6 +19,6 @@ class ToyRepository {
 
     fun getAllLowerPrice(price: Int) = toys
         .filter { it.value.price < price }.values
-        .ifEmpty { throw IllegalArgumentException("Игрушки дешевле отсутствуют") }
+        .ifEmpty { throw MyToyException("Повторите позже") }
 
 }

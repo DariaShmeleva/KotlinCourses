@@ -16,6 +16,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
+import ru.tinkoff.shmeleva.exception.advice.MyToyException
 import ru.tinkoff.shmeleva.model.ToyRequest
 import ru.tinkoff.shmeleva.model.ToyResponse
 
@@ -89,14 +90,14 @@ class MockMvcApplicationTests {
 
     @Test
     fun errorMessageWhenGetAllLowerPriceFails() {
-        every { toyRepository.getAllLowerPrice(any()) } throws illegalStateException
+        every { toyRepository.getAllLowerPrice(any()) } throws myToyExeptoin
 
         mockMvc.perform(
             get("/toys/getAllLowerPrice")
                 .param("price", "2000")
         )
             .andExpect(status().is5xxServerError)
-            .andExpect(content().string(containsString("Игрушки дешевле отсутствуют")))
+            .andExpect(content().string(containsString("Повторите позже")))
     }
 
     @Test
@@ -115,6 +116,6 @@ class MockMvcApplicationTests {
             ToyResponse("Барби", "Кукла", 2000),
             ToyResponse("Кораблик", "Радиоуправляемая", 3500)
         )
-        private val illegalStateException = IllegalStateException("Игрушки дешевле отсутствуют")
+        private val myToyExeptoin = MyToyException("Повторите позже")
     }
 }

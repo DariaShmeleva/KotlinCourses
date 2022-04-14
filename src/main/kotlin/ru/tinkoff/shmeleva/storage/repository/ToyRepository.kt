@@ -1,6 +1,6 @@
-package ru.tinkoff.shmeleva.repository
+package ru.tinkoff.shmeleva.storage.repository
 
-import ru.tinkoff.shmeleva.entity.entity.ToyEntity
+import ru.tinkoff.shmeleva.storage.entity.ToyEntity
 
 interface ToyRepository {
 

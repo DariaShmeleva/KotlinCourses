@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest
 import org.springframework.jdbc.core.JdbcTemplate
-import ru.tinkoff.shmeleva.repository.JdbcToyRepositoryImpl
-import ru.tinkoff.shmeleva.entity.entity.ToyEntity
+import ru.tinkoff.shmeleva.storage.repository.JdbcToyRepositoryImpl
+import ru.tinkoff.shmeleva.storage.entity.ToyEntity
 import javax.sql.DataSource
 
 @JdbcTest

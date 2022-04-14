@@ -1,8 +1,8 @@
-package ru.tinkoff.shmeleva.repository
+package ru.tinkoff.shmeleva.storage.repository
 
 import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
-import ru.tinkoff.shmeleva.entity.entity.ToyEntity
+import ru.tinkoff.shmeleva.storage.entity.ToyEntity
 
 @Primary
 @Service

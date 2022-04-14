@@ -1,9 +1,9 @@
-package ru.tinkoff.shmeleva.repository
+package ru.tinkoff.shmeleva.storage.repository
 
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.PreparedStatementCreator
 import org.springframework.stereotype.Service
-import ru.tinkoff.shmeleva.entity.entity.ToyEntity
+import ru.tinkoff.shmeleva.storage.entity.ToyEntity
 
 //@Primary
 @Service

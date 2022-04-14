@@ -1,6 +1,6 @@
 package ru.tinkoff.shmeleva.toyStore
 
-import ru.tinkoff.shmeleva.entity.entity.ToyEntity
+import ru.tinkoff.shmeleva.storage.entity.ToyEntity
 import ru.tinkoff.shmeleva.model.Toy
 
 fun ToyEntity.toDto(): Toy =

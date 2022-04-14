@@ -1,4 +1,4 @@
-package ru.tinkoff.shmeleva.entity.entity
+package ru.tinkoff.shmeleva.storage.entity
 
 import javax.persistence.*
 

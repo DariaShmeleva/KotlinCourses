@@ -1,18 +1,18 @@
 package ru.tinkoff.shmeleva.toyStore
 
-import ru.tinkoff.shmeleva.db.ToyDB
+import ru.tinkoff.shmeleva.entity.entity.ToyEntity
 import ru.tinkoff.shmeleva.model.Toy
 
-fun ToyDB.toDto(): Toy =
+fun ToyEntity.toDto(): Toy =
     Toy(
-        this.toyname,
-        this.toytype,
+        this.name,
+        this.type,
         this.price
     )
 
-fun Toy.toDB(): ToyDB =
-    ToyDB(
-        toyname = this.toyname,
-        toytype = this.toytype,
+fun Toy.toDB(): ToyEntity =
+    ToyEntity(
+        name = this.name,
+        type = this.type,
         price = this.price,
     )

@@ -1,6 +1,6 @@
 CREATE TABLE toys
-( toy_id INT serial PRIMARY KEY ,
-toyname VARCHAR(50) UNIQUE ,
-toytype VARCHAR(50)        ,
+( id INT serial PRIMARY KEY ,
+name VARCHAR(50) UNIQUE ,
+type VARCHAR(50)        ,
 price INT
 );

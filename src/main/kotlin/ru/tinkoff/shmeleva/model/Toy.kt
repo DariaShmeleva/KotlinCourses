@@ -1,7 +1,7 @@
 package ru.tinkoff.shmeleva.model
 
 data class Toy(
-    val toyname: String,
-    val toytype: String,
+    val name: String,
+    val type: String,
     val price: Int
 )

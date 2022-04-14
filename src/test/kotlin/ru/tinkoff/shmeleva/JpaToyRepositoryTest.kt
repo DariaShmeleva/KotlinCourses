@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.annotation.DirtiesContext
 import ru.tinkoff.shmeleva.repository.JpaToyRepo
-import ru.tinkoff.shmeleva.db.ToyDB
+import ru.tinkoff.shmeleva.entity.entity.ToyEntity
 
 @DataJpaTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -18,9 +18,9 @@ internal class JpaToyRepositoryTest {
 
     @BeforeEach
     fun setUp() {
-        repository.save(ToyDB(toyname = "Molnia", toytype = "car", price = 2000))
-        repository.save(ToyDB(toyname = "Korablik", toytype = "radiotoy", price = 2500))
-        repository.save(ToyDB(toyname = "HelloKitty", toytype = "fluffy toy", price = 1700))
+        repository.save(ToyEntity(name = "Molnia", type = "car", price = 2000))
+        repository.save(ToyEntity(name = "Korablik", type = "radiotoy", price = 2500))
+        repository.save(ToyEntity(name = "HelloKitty", type = "fluffy toy", price = 1700))
     }
 
     @Test
@@ -28,7 +28,7 @@ internal class JpaToyRepositoryTest {
 
         val result = repository.findById(1).get()
 
-        assertEquals("Molnia", result.toyname)
+        assertEquals("Molnia", result.name)
         assertEquals(2000, result.price)
     }
 
@@ -43,10 +43,10 @@ internal class JpaToyRepositoryTest {
     @Test
     fun savePerson() {
 
-        repository.save(ToyDB(toyname = "Barbie", toytype = "doll", price = 1500))
+        repository.save(ToyEntity(name = "Barbie", type = "doll", price = 1500))
 
         assertEquals(4, repository.findAll().size)
-        assertEquals("Barbie", repository.findAll()[3].toyname)
-        assertEquals(4, repository.findAll()[3].toy_id)
+        assertEquals("Barbie", repository.findAll()[3].name)
+        assertEquals(4, repository.findAll()[3].id)
     }
 }

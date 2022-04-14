@@ -1,14 +1,12 @@
 package ru.tinkoff.shmeleva.repository
 
-import org.springframework.stereotype.Repository
-import ru.tinkoff.shmeleva.db.ToyDB
+import ru.tinkoff.shmeleva.entity.entity.ToyEntity
 
-@Repository
 interface ToyRepository {
 
-    fun addToy(toy: ToyDB)
+    fun addToy(toy: ToyEntity)
 
-    fun getToys(): List<ToyDB>
+    fun getToys(): List<ToyEntity>
 
-    fun getToy(id: Int): ToyDB
+    fun getToy(id: Int): ToyEntity
 }

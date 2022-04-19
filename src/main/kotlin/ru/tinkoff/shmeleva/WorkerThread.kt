@@ -14,7 +14,7 @@ class WorkerThread(
             var task: Runnable?
             synchronized(taskQueue) {
                 while (taskQueue.isEmpty() && !isStopped) {
-                    (taskQueue as Object).wait()
+                    runCatching {(taskQueue as Object).wait()}.onFailure {isStopped = true}
                 }
                 task = taskQueue.poll()
             }

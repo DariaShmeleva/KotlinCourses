@@ -4,20 +4,21 @@ import java.util.*
 import  java.util.concurrent.Executor
 import java.util.concurrent.LinkedBlockingQueue
 
-class ThreadPool(threadQuantity: Int, maxThreadQuantity: Int) : Executor {
+class ThreadPool(threadQuantity: Int) : Executor {
 
-    val threadList = LinkedList<WorkerThread?>()
+    val threadList = LinkedList<WorkerThread>()
 
     private val taskQueue = LinkedBlockingQueue<Runnable>()
 
     init {
-        if (threadQuantity < 1 || threadQuantity > maxThreadQuantity)
+        if (threadQuantity < 1 || threadQuantity > MAX_THREADS_QUANTITY)
             throw IllegalArgumentException("Недоступное количество потоков!")
-        for (i in 1..threadQuantity) {
+        repeat(threadQuantity) {
             val thread = WorkerThread(taskQueue)
             threadList.add(thread)
             thread.start()
         }
+        println("Queue is ready!")
     }
 
     override fun execute(command: Runnable) {
@@ -28,8 +29,13 @@ class ThreadPool(threadQuantity: Int, maxThreadQuantity: Int) : Executor {
     }
 
     fun shutdown() {
-        for (i in 0 until threadList.size) {
-                threadList[i]!!.interrupt()
+        threadList.forEach {
+            it.interrupt()
+            it.isStopped = true
         }
+    }
+
+    companion object {
+        const val MAX_THREADS_QUANTITY = 11
     }
 }

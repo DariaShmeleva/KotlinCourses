@@ -6,26 +6,19 @@ class WorkerThread(
     private val taskQueue: LinkedBlockingQueue<Runnable>
 ) : Thread() {
 
+    @Volatile
     var isStopped = false
 
     override fun run() {
         while (true) {
-            var task: Runnable? = null
+            var task: Runnable?
             synchronized(taskQueue) {
-                if (taskQueue.isEmpty()) {
-                    try {
-                        (taskQueue as Object).wait()
-                    } catch (e: InterruptedException) {
-                        isStopped = true
-                    }
+                while (taskQueue.isEmpty() && !isStopped) {
+                    (taskQueue as Object).wait()
                 }
-                if (!isStopped) {
-                    task = taskQueue.poll()
-                }
+                task = taskQueue.poll()
             }
-            if (isStopped)
-                break
-            task!!.run()
+            task?.run()
         }
     }
 }

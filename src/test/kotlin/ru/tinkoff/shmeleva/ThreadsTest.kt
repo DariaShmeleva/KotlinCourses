@@ -6,13 +6,14 @@ import org.junit.jupiter.api.assertThrows
 
 class ThreadsTest {
 
-    val threadPool = ThreadPool(5, 7)
 
     @Test
     fun threadPoolTest() {
 
+        val threadPool = ThreadPool(8)
+
         assertDoesNotThrow {
-            for (i in 0..5) {
+            for (i in 0..8) {
                 threadPool.execute {
                     println("$i - задача выполняется...")
                 }
@@ -24,7 +25,7 @@ class ThreadsTest {
     @Test
     fun exceptionWhenThreadsQuantityIsUnavailable() {
         val result = assertThrows<IllegalArgumentException> {
-            ThreadPool(5, 2)
+            ThreadPool(20)
         }
         assertEquals("Недоступное количество потоков!", result.message)
     }

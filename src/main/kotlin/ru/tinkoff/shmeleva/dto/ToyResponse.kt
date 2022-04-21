@@ -1,6 +1,6 @@
-package ru.tinkoff.shmeleva.model
+package ru.tinkoff.shmeleva.dto
 
-data class Toy(
+data class ToyResponse(
     val name: String,
     val type: String,
     val price: Int

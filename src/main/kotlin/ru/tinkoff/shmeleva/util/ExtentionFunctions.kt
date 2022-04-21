@@ -1,18 +1,21 @@
-package ru.tinkoff.shmeleva.toyStore
+package ru.tinkoff.shmeleva.util
 
+import ru.tinkoff.shmeleva.dto.ToyRequest
+import ru.tinkoff.shmeleva.dto.ToyResponse
 import ru.tinkoff.shmeleva.storage.entity.ToyEntity
-import ru.tinkoff.shmeleva.model.Toy
 
-fun ToyEntity.toDto(): Toy =
-    Toy(
-        this.name,
-        this.type,
-        this.price
+fun ToyRequest.toModel(): ToyEntity {
+    return ToyEntity(
+        name = name,
+        type = type,
+        price = price
     )
+}
 
-fun Toy.toDB(): ToyEntity =
-    ToyEntity(
-        name = this.name,
-        type = this.type,
-        price = this.price,
+fun ToyEntity.toDto(): ToyResponse {
+    return ToyResponse(
+        name = name,
+        type = type,
+        price = price
     )
+}

@@ -21,12 +21,12 @@ import ru.tinkoff.shmeleva.dto.ToyRequest
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-internal class ToyTest {
+class ToyTest {
 
     @Autowired
     private lateinit var mockMvc: MockMvc
 
-    @MockkBean(relaxed = true, relaxUnitFun = true)
+    @MockkBean
     private lateinit var toyClient: ToyClient
 
     @BeforeAll
@@ -35,7 +35,7 @@ internal class ToyTest {
         runBlocking {
             mockMvc.perform(
                 post("/best-toy")
-                    .param("name", "Molnia")
+                    .param("name", "Molnia1")
                     .param("type", "car")
                     .param("price", "2000")
             )

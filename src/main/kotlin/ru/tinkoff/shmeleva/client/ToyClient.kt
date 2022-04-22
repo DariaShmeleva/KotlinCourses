@@ -11,7 +11,7 @@ import ru.tinkoff.shmeleva.dto.ToyRequest
 @Component
 class ToyClient(private var client: WebClient) {
 
-    suspend fun toyProcessed(toy: ToyRequest) : ToyRequest {
+    suspend fun toyProcessed(toy: ToyRequest): ToyRequest {
         return client.post()
             .uri("/toy")
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

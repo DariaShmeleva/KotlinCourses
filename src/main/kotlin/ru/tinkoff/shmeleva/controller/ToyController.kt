@@ -12,9 +12,7 @@ class ToyController(
 ) {
 
     @PostMapping("/best-toy")
-    fun addToy(
-        @RequestBody toy: ToyRequest
-    ) = toyService.addToy(toy)
+    fun addToy(toy: ToyRequest) = toyService.addToy(toy)
 
     @GetMapping("/best-toy/{id}")
     fun getToy(

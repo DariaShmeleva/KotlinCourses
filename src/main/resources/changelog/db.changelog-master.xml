@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="daria" id="create">
+        <sql>
+            CREATE TABLE IF NOT EXISTS toys
+            (
+            id serial PRIMARY KEY,
+            name VARCHAR(50) UNIQUE NOT NULL,
+            type VARCHAR(50) NOT NULL,
+            price INT
+            );
+        </sql>
+    </changeSet>
+    <changeSet author="daria" id="fill">
+        <sql>
+            INSERT INTO toys (name, type, price) VALUES ('Molnia', 'car', 2000);
+            INSERT INTO toys (name, type, price) VALUES ('Korabl', 'radiotoy', 2500);
+            INSERT INTO toys (name, type, price) VALUES ('Barbie', 'doll', 1500);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -6,10 +6,12 @@ spring:
     password: sa
   liquibase:
     change-log: changelog/db.changelog-master.xml
-    enabled: false
+    enabled: true
   jpa:
     show-sql: true
-    activemq:
-      in-memory: true
-      pool.enabled: false
+  activemq:
+    in-memory: true
+    pool:
+      enabled: false
+    packages:
       trust-all: true

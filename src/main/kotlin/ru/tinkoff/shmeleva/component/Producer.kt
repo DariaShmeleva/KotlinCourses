@@ -1,7 +1,6 @@
 package ru.tinkoff.shmeleva.component
 
 import org.apache.activemq.command.ActiveMQQueue
-import org.springframework.jms.JmsException
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
@@ -21,10 +20,11 @@ class Producer(
         newEvents.map {
             val event = it
             eventService.updateStatus(event, EventStatus.IN_PROCESS)
-            try {
-                jmsTemplate.convertAndSend(queue, event)
-            } catch (e: JmsException) {
-                eventService.updateStatus(event, EventStatus.ERROR)
+            runCatching { jmsTemplate.convertAndSend(queue, event) }.onFailure {
+                eventService.updateStatus(
+                    event,
+                    EventStatus.ERROR
+                )
             }
         }
     }

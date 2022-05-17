@@ -27,8 +27,8 @@ internal class EventTest {
         eventRepository.save(
             EventEntity(
                 1,
-                EventType.EMAIL,
-                "Hello from email",
+                EventType.SMS,
+                "Hello from SMS service",
                 EventStatus.NEW
             )
         )
@@ -41,12 +41,11 @@ internal class EventTest {
         producer.produceEvents()
         sleep(200)
 
-
         val result = eventRepository.findById(1).get()
         Assertions.assertAll(
-            { assertEquals("Hello from email", result.body) },
+            { assertEquals("Hello from SMS service", result.body) },
+            { assertEquals(EventType.SMS, result.type) },
             { assertEquals(EventStatus.DONE, result.status) },
-            { assertEquals(EventType.EMAIL, result.type) }
         )
     }
 }

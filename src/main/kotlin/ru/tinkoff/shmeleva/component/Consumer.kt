@@ -18,7 +18,7 @@ class Consumer(
     private val eventService: EventService
 ) {
 
-    @JmsListener(destination = "event.queue")
+    @JmsListener(destination = "eventQueue")
     fun consumeEvents(event: Event) {
         when (event.type) {
             EventType.SMS -> smsProcessor.processEvent(event)

@@ -6,6 +6,6 @@ import ru.tinkoff.shmeleva.model.Event
 @Service
 class SmsProcessor : Processor {
     override fun processEvent(event: Event) {
-        println("Hello from SMS service")
+        println("Hello from $event service")
     }
 }
